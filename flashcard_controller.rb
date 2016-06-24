@@ -17,7 +17,7 @@ class FlashcardController
 
   def get_user_answer
     user_answer = gets.chomp.downcase
-    answer_bool = @model.check_answer(user_answer, @question_num)
+    answer_bool = @model.answer_correct?(user_answer, @question_num)
     if answer_bool
       @correct_answers += 1
     end
@@ -27,8 +27,8 @@ class FlashcardController
 
   def run
     while @question_num < @num_of_questions
-    controller_display
-    get_user_answer
+      controller_display
+      get_user_answer
     end
     @view.display_total_correct(@num_of_questions, @correct_answers)
   end
